@@ -229,6 +229,21 @@ try {
 		header("Location: " . $redirect . $connector . "success=liked_updated");
 		exit;
 	}
+	
+	// --- 11. ΕΚΚΑΘΑΡΙΣΗ ΟΛΗΣ ΤΗΣ WATCHLIST ---
+    elseif ($action === 'clear_watchlist') {
+        try {
+            // Χρησιμοποιούμε τον πίνακα watchlist_items όπως και στο delete_item
+            $stmt = $pdo->prepare("DELETE FROM watchlist_items WHERE userID = ?");
+            $stmt->execute([$currentUserID]);
+
+            // Επιστροφή στο προφίλ, στο tab της watchlist
+            header("Location: ../profile.php?tab=watchlist&success=watchlist_cleared");
+            exit;
+        } catch (Exception $e) {
+            die("Error clearing watchlist: " . $e->getMessage());
+        }
+    }
 
 } catch (Exception $e) {
     error_log("Controller Error: " . $e->getMessage());
