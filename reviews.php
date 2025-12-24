@@ -42,14 +42,18 @@ $defaultAvatar = './frontend/assets/images/noavatar.png';
                                 <div class="p-3">
                                     
                                     <div class="d-flex align-items-center mb-2">
-                                        <div class="me-2">
-                                            <?php if ($review['avatar_url']): ?>
-                                                <img src="<?php echo htmlspecialchars($review['avatar_url']); ?>" class="user-avatar-img" alt="User">
-                                            <?php else: ?>
-                                                <img src="<?php echo $defaultAvatar; ?>" class="user-avatar-img" alt="No Avatar">
-                                            <?php endif; ?>
-                                        </div>
-                                        <span class="fw-bold fs-5"><?php echo htmlspecialchars($review['username']); ?></span>
+                                        <div class="mb-2">
+											<a href="view_profile.php?id=<?php echo $review['authorID']; ?>" class="text-decoration-none d-flex align-items-center text-dark">
+												<div class="me-2">
+													<?php if ($review['avatar_url']): ?>
+														<img src="<?php echo htmlspecialchars($review['avatar_url']); ?>" class="user-avatar-img" alt="User">
+													<?php else: ?>
+														<img src="<?php echo $defaultAvatar; ?>" class="user-avatar-img" alt="No Avatar">
+													<?php endif; ?>
+												</div>
+												<span class="fw-bold fs-5"><?php echo htmlspecialchars($review['username']); ?></span>
+											</a>
+										</div>
                                     </div>
 
                                     <h5 class="mb-1">
